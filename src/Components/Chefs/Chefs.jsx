@@ -14,6 +14,7 @@ const Chefs = () => {
     return (
         <div>
             <h2>this is chef page</h2>
+            <div className='grid grid-cols-3'>
             {
                 chefs.map(chef=> <Chef
                 key={chef.id}
@@ -21,6 +22,7 @@ const Chefs = () => {
                     
                 </Chef>)
             }
+            </div>
         </div>
     );
 };
