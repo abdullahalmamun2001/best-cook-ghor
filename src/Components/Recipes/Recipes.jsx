@@ -7,7 +7,7 @@ const Recipes = ({recipe}) => {
     // const {name,making_details}=recipe;
     return (
         <div>
-            <h1>this is recipes</h1>
+            {/* <h1>this is recipes</h1> */}
             <h2></h2>
         </div>
     );
