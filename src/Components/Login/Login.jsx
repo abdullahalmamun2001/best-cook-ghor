@@ -4,9 +4,10 @@ import { AuthContext } from '../Provider/AuthPRovider';
 
 const Login = () => {
     const {signIn}=useContext(AuthContext)
+
     const handleLoginForm = (event) => {
         event.preventDefault()
-        const form = event.email.target;
+        const form = event.target;
         const email = form.email.value
         const password = form.password.value;
         console.log(email, password);
@@ -14,6 +15,7 @@ const Login = () => {
         signIn(email,password)
         .then(result=>{console.log(result.user)})
         .catch(error=>console.log(error.message))
+    }
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
@@ -50,6 +52,5 @@ const Login = () => {
             </div>
         </div>
     );
-};
 };
 export default Login;

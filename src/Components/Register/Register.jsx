@@ -5,7 +5,7 @@ import { AuthContext } from '../Provider/AuthPRovider';
 
 
 const Register = () => {
-    const { createUser,googleRegister } = useContext(AuthContext)
+    const { createUser,googleRegister,githubSignIn } = useContext(AuthContext)
     const handleRegisterForm = (event) => {
         event.preventDefault()
         const form = event.target;
@@ -32,6 +32,15 @@ const Register = () => {
         .catch(error=>{
             console.log(error.message);
         })
+    }
+
+    const handleGithubSignIn=()=>{
+        githubSignIn()
+        .then(result=>{
+            const logInUser=result.user;
+            console.log(logInUser);
+        })
+        .catch(error=>console.log(error.message))
     }
     return (
         <div>
@@ -79,7 +88,10 @@ const Register = () => {
                                 <button className="btn btn-primary">Register</button>
                             </div>
                             <Link to='/login'>Already account? Please <strong>Login</strong></Link>
+                        <div className='flex gap-16'>
+                        <button className="btn btn-primary w-1/3" onClick={handleGithubSignIn}>Github</button>
                         <button onClick={handleGooglePopup} className='btn btn-primary w-1/3'>Google</button>
+                        </div>
                         </form>
                     </div>
                 </div>
