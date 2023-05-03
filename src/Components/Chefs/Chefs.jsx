@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Chef from '../Chef/Chef';
+import { useLoaderData, useParams } from 'react-router-dom';
 
 const Chefs = () => {
+    const paramsData=useParams();
+    const loaderData=useLoaderData();
+    // console.log(paramsData);
+    // console.log(loaderData);
     const [chefs,setChefs]=useState([]);
+    // console.log(chefs);
 
 
     useEffect(()=>{
-        fetch('http://localhost:5000/chefs')
+        fetch('https://shape-server-abdullahalmamun2001.vercel.app/chefs')
         .then(res=>res.json())
         .then(data=>setChefs(data))
         .catch(error=>console.log(error))
@@ -14,13 +20,12 @@ const Chefs = () => {
     return (
         <div>
             <h2>this is chef page</h2>
-            <div className='grid grid-cols-3'>
+            <div className='grid md:grid-cols-3 gap-6 justify-center my-10 mx-auto'>
             {
                 chefs.map(chef=> <Chef
                 key={chef.id}
                 chef={chef}>
-                    
-                </Chef>)
+                  </Chef>)
             }
             </div>
         </div>
