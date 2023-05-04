@@ -19,7 +19,7 @@ const Chefs = () => {
     },[])
     return (
         <div>
-            <h2>this is chef page</h2>
+            <h1 className='text-center text-4xl text-fw-bold my-10 text-bg-slate-400'>OUR SPECIAL CHEFS</h1>
             <div className='grid md:grid-cols-3 gap-6 justify-center my-10 mx-auto'>
             {
                 chefs.map(chef=><Chef

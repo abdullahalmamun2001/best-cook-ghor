@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Recipes from '../Recipes/Recipes';
 import { ToastContainer, toast } from 'react-toastify';
 
 const Chef = ({ chef }) => {
     const notify = () => toast("Wow so easy!");  
-    const chefsData = useLoaderData();
-    const paramsData = useParams();
+    // const chefsData = useLoaderData();
+    // const paramsData = useParams();
     // console.log(chefsData);
     // console.log(paramsData)
     // console.log(props);
@@ -20,34 +20,25 @@ const Chef = ({ chef }) => {
 
     return (
         <div>
-            <div className="card w-96 bg-base-100 h-5/6 shadow-xl">
-                <figure className="px-10 pt-10">
-                    <img src={picture} alt="Shoes" className="rounded-xl" />
-                </figure>
-                <div className="card-body items-center text-center">
-                    {/* <h1>{id}</h1> */}
-                    <h2 className="card-title">{name}</h2>
-                    <div className='flex gap-14'>
-                        <p>Experience :{experience}</p>
-                        <p>Likes :{likes}</p>
-                    </div>
-                    <p>Recipes :{recipes.length}</p>
-                    <div className="card-actions">
-                        <Link to={`/recipes/${id}`} onClick={() => handleRecipes(id)} className="btn btn-primary" >View Recipes</Link>
-                        <button onClick={notify}>Toast</button>
-                        <ToastContainer></ToastContainer>
-                    </div>
-                    <div>
-                        {
-                            recipes.map(recipe => <Recipes
-
-                                key={recipe.id}
-                                recipe={recipe}></Recipes>)
-                        }
-                    </div>
+        <div className="card w-96 bg-base-100 h-5/6 shadow-xl">
+            <figure className="px-10 pt-10">
+                <img src={picture} alt="Shoes" className="rounded-xl img-fluid" />
+            </figure>
+            <div className="card-body items-center text-center">
+                {/* <h1>{id}</h1> */}
+                <h2 className="card-title">{name}</h2>
+                <div className='flex gap-14'>
+                    <p>Experience :{experience}</p>
+                    <p>Likes :{likes}</p>
+                </div>
+                <p>Recipes :{recipes.length}</p>
+                <div className="card-actions">
+                    <Link to={`/chefs/${id}`} className="btn btn-primary" >View Recipes</Link>
+                    <ToastContainer></ToastContainer>
                 </div>
             </div>
         </div>
+    </div>
     );
 };
 

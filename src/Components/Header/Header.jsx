@@ -21,26 +21,26 @@ const Header = () => {
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to='/'>Home</Link></li>
-                        <li tabIndex={0}><Link to='/chefs'>Chef</Link></li>
+                        <li tabIndex={0}></li>
                         <li><Link to='/blogs'>Blogs</Link></li>
                         <li><Link to='/login'>Login</Link></li>
                         <li><Link to='/register'>Register</Link></li>
                         {
-                            user? <div><li>{user.email}</li><button onClick={handleLogOut}>logOut</button><img src={user.photoURL} alt="" /></div>:''
+                            user? <div><button onClick={handleLogOut}>logOut</button><img src={user.photoURL} alt="" /></div>:''
                         }
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <a className="btn btn-ghost normal-case text-xl">Best Cook Ghor</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         <li><Link to='/'>Home</Link></li>
-                        <li tabIndex={0}><Link to='/chefs'>Chef</Link></li>
+                        <li tabIndex={0}></li>
                         <li><Link to='/blogs'>Blogs</Link></li>
-                        <li><Link to='/login'>Login</Link></li>
                         <li><Link to='/register'>Register</Link></li>
+                        
                         {
-                            user? <div className='flex gap-8 justify-between'><li className='items-center'>{user.email}</li><img className='rounded-full w-14 h-14 mt-5' src={user.photoURL} alt="" /><button className="btn btn-outline mt-6" onClick={handleLogOut}>logOut</button></div>:''
+                            user? <div className='flex gap-8 justify-between'><img className='rounded-full w-14 h-14 mt-5' src={user.photoURL} alt="" /><button className="btn btn-outline mt-6" onClick={handleLogOut}>logOut</button></div>:<li><Link to='/login'>Login</Link></li>
                         }
                     </ul>
                 </div>

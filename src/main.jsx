@@ -26,22 +26,23 @@ const router =createBrowserRouter([
         path:'/',
         element:<Home></Home>
       },
-      {
-          path:"/chefs",
-          element:<Chefs></Chefs>,
-      },
+      // {
+      //     path:"/chefs",
+      //     element:<Chefs></Chefs>,
+      // },
       // {
       //   path:"/chefs/:id",
       //   element:<Chef></Chef>,
-      //   loader:({params})=>fetch(`http://localhost:5000/chefs/${params.id}`)
+        
       // },
       {
         path:'blogs',
-        element:<PrivateRouter><Blog></Blog></PrivateRouter>
+        element:<Blog></Blog>
       },
       {
-        path:'/recipes/:id',
-        element:<Recipes></Recipes>
+        path:'/chefs/:id',
+        element:<PrivateRouter><Recipes></Recipes></PrivateRouter>,
+        loader:({params})=>fetch(`https://shape-server-abdullahalmamun2001.vercel.app/chefs/${params.id}`)
       },
       {
         path:"/register",
