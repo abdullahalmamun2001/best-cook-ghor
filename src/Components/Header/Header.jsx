@@ -25,6 +25,9 @@ const Header = () => {
                         <li><Link to='/blogs'>Blogs</Link></li>
                         <li><Link to='/login'>Login</Link></li>
                         <li><Link to='/register'>Register</Link></li>
+                        {
+                            user? <div><li>{user.email}</li><button onClick={handleLogOut}>logOut</button><img src={user.photoURL} alt="" /></div>:''
+                        }
                         </ul>
                     </div>
                     <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
@@ -37,12 +40,12 @@ const Header = () => {
                         <li><Link to='/login'>Login</Link></li>
                         <li><Link to='/register'>Register</Link></li>
                         {
-                            user? <div className='flex'><li className='items-center p-3'>{user.email}</li><button onClick={handleLogOut}>logOut</button><img src={user.photoURL} alt="" /></div>:''
+                            user? <div className='flex gap-8 justify-between'><li className='items-center'>{user.email}</li><img className='rounded-full w-14 h-14 mt-5' src={user.photoURL} alt="" /><button className="btn btn-outline mt-6" onClick={handleLogOut}>logOut</button></div>:''
                         }
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Get started</a>
+                    {/* <a className="btn">Get started</a> */}
                 </div>
             </div>
         </div>

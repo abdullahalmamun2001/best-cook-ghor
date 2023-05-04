@@ -22,7 +22,7 @@ const Chefs = () => {
             <h2>this is chef page</h2>
             <div className='grid md:grid-cols-3 gap-6 justify-center my-10 mx-auto'>
             {
-                chefs.map(chef=> <Chef
+                chefs.map(chef=><Chef
                 key={chef.id}
                 chef={chef}>
                   </Chef>)

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import Recipes from '../Recipes/Recipes';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Chef = ({ chef }) => {
+    const notify = () => toast("Wow so easy!");  
     const chefsData = useLoaderData();
     const paramsData = useParams();
     // console.log(chefsData);
@@ -18,7 +20,7 @@ const Chef = ({ chef }) => {
 
     return (
         <div>
-            <div className="card w-96 bg-base-100 h-96 shadow-xl">
+            <div className="card w-96 bg-base-100 h-5/6 shadow-xl">
                 <figure className="px-10 pt-10">
                     <img src={picture} alt="Shoes" className="rounded-xl" />
                 </figure>
@@ -32,6 +34,8 @@ const Chef = ({ chef }) => {
                     <p>Recipes :{recipes.length}</p>
                     <div className="card-actions">
                         <Link to={`/recipes/${id}`} onClick={() => handleRecipes(id)} className="btn btn-primary" >View Recipes</Link>
+                        <button onClick={notify}>Toast</button>
+                        <ToastContainer></ToastContainer>
                     </div>
                     <div>
                         {

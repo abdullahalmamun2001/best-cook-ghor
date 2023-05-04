@@ -7,6 +7,7 @@ export const AuthContext=createContext(null)
 
 const AuthPRovider = ({children}) => {
     const [user,setUser]=useState('');
+    const [loader,setLoader]=useState(true);
 
     const auth=getAuth(app)
     const provider=new GoogleAuthProvider();
@@ -31,6 +32,7 @@ const AuthPRovider = ({children}) => {
     useEffect(()=>{
         const unsubscribe=onAuthStateChanged(auth,currentUser=>{
             setUser(currentUser)
+            setLoader(currentUser)
         })
         return()=>{
             return unsubscribe;
@@ -40,7 +42,7 @@ const AuthPRovider = ({children}) => {
     const logOut=()=>{
         return signOut(auth)
     }
-    const authInfo={user,createUser,googleRegister,signIn,githubSignIn,logOut}
+    const authInfo={user,loader,createUser,googleRegister,signIn,githubSignIn,logOut}
     return (
         <div>
             <AuthContext.Provider value={authInfo}>

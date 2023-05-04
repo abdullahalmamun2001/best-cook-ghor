@@ -8,9 +8,7 @@ const Home = () => {
         <div>
             <h1>this is home</h1>
             <Banner></Banner>
-            {
-                user? <img src={user.displayName} alt="" />:''
-            }
+            
         </div>
     );
 };
