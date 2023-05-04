@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, GithubAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
-import app from "./../../firebase/firebase.config.js"
+import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, GithubAuthProvider, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
+import app from "./../../firebase/firebase.config"
 
 export const AuthContext=createContext(null)
 // const {user,setUser}=useState(null)
@@ -14,10 +14,12 @@ const AuthPRovider = ({children}) => {
     const githubProvider=new GithubAuthProvider();
 
     const createUser=(email,password)=>{
+        setLoader(true)
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
     const signIn=(email,password)=>{
+        setLoader(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
 
@@ -32,7 +34,7 @@ const AuthPRovider = ({children}) => {
     useEffect(()=>{
         const unsubscribe=onAuthStateChanged(auth,currentUser=>{
             setUser(currentUser)
-            setLoader(currentUser)
+            setLoader(false)
         })
         return()=>{
             return unsubscribe;
@@ -42,6 +44,7 @@ const AuthPRovider = ({children}) => {
     const logOut=()=>{
         return signOut(auth)
     }
+    
     const authInfo={user,loader,createUser,googleRegister,signIn,githubSignIn,logOut}
     return (
         <div>

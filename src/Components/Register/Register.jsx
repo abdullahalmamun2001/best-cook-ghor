@@ -1,31 +1,47 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthPRovider';
 
 
 
 const Register = () => {
-    const { createUser, googleRegister, githubSignIn } = useContext(AuthContext)
+    const [error,setError]=useState('');
+    const { createUser} = useContext(AuthContext)
     const handleRegisterForm = (event) => {
         event.preventDefault()
         const form = event.target;
         const email = form.email.value
-        const confirm = form.confirm.value
+        // const confirm = form.confirm.value
+        const name = form.name.value
         const password = form.password.value;
+        form.reset();
+        
+        if(password.length<6){
+            return setError('Please Strong Password')
+        }
         console.log(email, password, confirm);
 
         createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                updateUseData(result.user,name)
             })
             .catch(error => {
-                console.log(error.message);
+                setError(error);
             })
+    }
+    const updateUseData=(user,name)=>{
+        updateProfile(user,{
+            displayName:name
+        })
+        .then(console.log('user data us update'))
+        .catch(error=>console.log(error.massage))
     }
     
     return (
         <div>
+            <p>{error}</p>
             <div className="hero min-h-screen bg-base-200">
                 <h1>Register</h1>
                 <div className="hero-content ">
@@ -41,13 +57,13 @@ const Register = () => {
                                 </label>
                                 <input type="email" name='email' placeholder="Enter Your Email" className="input input-bordered" required />
                             </div>
-                            {/* <div className="form-control">
+                            <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="name" name='name' placeholder="Enter Your User Name" className="input input-bordered" required />
+                                <input type="text" name='name' placeholder="Enter Your User Name" className="input input-bordered" required />
                             </div>
-                            <div className="form-control">
+                            {/* <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>

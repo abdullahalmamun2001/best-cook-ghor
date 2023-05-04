@@ -8,7 +8,7 @@ import Footer from '../Footer/Footer';
 const Home = () => {
     const {user}=useContext(AuthContext)
     return (
-        <div>
+        <div><h1 className='text-5xl text-red-500 text-center my-6'>Welcome to Our Best Cook Ghor</h1>
             <Banner></Banner>
             <Chefs></Chefs>
             <Rooms></Rooms>

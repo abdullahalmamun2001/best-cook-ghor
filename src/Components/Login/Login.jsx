@@ -1,9 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthPRovider';
 
 const Login = () => {
-    const [error,setError]=useState();
+    const navigate=useNavigate()
+    const location=useLocation();
+    const form=location.state?.from?.pathname ||'/';
+    const [error,setError]=useState('');
+
     const { signIn, googleRegister, githubSignIn } = useContext(AuthContext)
 
     const handleLoginForm = (event) => {
@@ -12,13 +16,20 @@ const Login = () => {
         const email = form.email.value
         const password = form.password.value;
         console.log(email, password);
+        
+
         setError('')
         if(password.length<6){
             return setError("Please give strong password")
         }
         
         signIn(email, password)
-            .then(result => { console.log(result.user) })
+            .then(result => { 
+                const loggedUser=result.user;
+                console.log(loggedUser);
+                form.reset();
+                navigate(from,{replace:true})
+             })
             .catch(error => console.log(error.message))
         }
     const handleGooglePopup = () => {
@@ -44,6 +55,7 @@ const Login = () => {
     
     return (
         <div>
+            <p>{error}</p>
             <div className="hero min-h-screen bg-base-200">
                 <h1>Please Login</h1>
                 <div className="hero-content ">

@@ -1,8 +1,10 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Recipe = ({ recipe }) => {
     console.log(recipe);
-    const { id, picture, name, rating, making_details } = recipe
+    const { id, picture, name, rating, making_details } = recipe;
+    const notify = () => toast("Wow so easy!");
     // console.log(picture);
     return (
         <div className='flex m-4'>
@@ -13,6 +15,8 @@ const Recipe = ({ recipe }) => {
             </div>
             <div className='m-10 border border-spacing-1 p-5 border-red-400 text-2xl my-auto w-10/12'>
                 <p>Cooking Policy :{making_details}</p>
+                <button className='btn btn-secondary' onClick={notify}>Favorite</button>
+                <ToastContainer />
             </div>
         </div>
     );
