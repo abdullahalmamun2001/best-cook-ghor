@@ -25,20 +25,11 @@ const router =createBrowserRouter([
     errorElement:<ErrorPage></ErrorPage>,
     children:[
       {
-        path:'/',
+        path:'/home',
         element:<Home></Home>
       },
-      // {
-      //     path:"/chefs",
-      //     element:<Chefs></Chefs>,
-      // },
-      // {
-      //   path:"/chefs/:id",
-      //   element:<Chef></Chef>,
-        
-      // },
       {
-        path:'blogs',
+        path:'/blogs',
         element:<Blog></Blog>
       },
       {
@@ -47,7 +38,7 @@ const router =createBrowserRouter([
         loader:({params})=>fetch(`https://shape-server-abdullahalmamun2001.vercel.app/chefs/${params.id}`)
       },
       {
-        path:"/register",
+        path:"/registers",
         element:<Register></Register>
       },
       {

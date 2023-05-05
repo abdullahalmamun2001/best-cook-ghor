@@ -13,9 +13,7 @@ const ErrorPage = () => {
             <p className="text-center my-5 text-red-500 text-2xl">
                 Sorry, you enter a invalid path, please enter valid path
             </p>
-            <p className="text-center">
-                <i>{Error.statusText || Error.message}</i>
-            </p>
+           
         </div>
 
     );

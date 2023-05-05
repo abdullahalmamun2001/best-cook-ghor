@@ -1,12 +1,15 @@
 import React, { useContext, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthPRovider';
 
 const Login = () => {
-    const navigate=useNavigate()
-    const location=useLocation();
-    const form=location.state?.from?.pathname ||'/';
-    const [error,setError]=useState('');
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+    const [error, setError] = useState('');
+    const navigate = useNavigate()
+
 
     const { signIn, googleRegister, githubSignIn } = useContext(AuthContext)
 
@@ -16,43 +19,45 @@ const Login = () => {
         const email = form.email.value
         const password = form.password.value;
         console.log(email, password);
-        
+
 
         setError('')
-        if(password.length<6){
+        if (password.length < 6) {
             return setError("Please give strong password")
         }
-        
-        signIn(email, password)
-            .then(result => { 
-                const loggedUser=result.user;
-                console.log(loggedUser);
-                form.reset();
-                navigate(from,{replace:true})
-             })
-            .catch(error => console.log(error.message))
-        }
-    const handleGooglePopup = () => {
-            googleRegister()
-                .then(result => {
-                    const loggedUser = result.user;
-                    console.log(loggedUser);
-                })
-                .catch(error => {
-                    console.log(error.message);
-                })
-        }
-    
-    const handleGithubSignIn = () => {
-            githubSignIn()
-                .then(result => {
-                    const logInUser = result.user;
-                    console.log(logInUser);
-                })
-                .catch(error => console.log(error.message))
-        }
 
-    
+        signIn(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                
+                form.reset();
+                navigate(from, { replace: true })
+            })
+            .catch(error => console.log(error.message))
+    }
+    const handleGooglePopup = () => {
+        googleRegister()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
+    }
+
+    const handleGithubSignIn = () => {
+        githubSignIn()
+            .then(result => {
+                const logInUser = result.user;
+                console.log(logInUser);
+            })
+            .catch(error => console.log(error.message))
+    }
+    const notify=()=>{toast.success('LogOut Successful')}
+
+
     return (
         <div>
             <p>{error}</p>
@@ -81,7 +86,9 @@ const Login = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+                                <button className="btn btn-primary" onClick={notify}>Login</button>
+                                toast.success('Login Success')
+                                <ToastContainer></ToastContainer>
                             </div>
                             <Link to='/register'>Are you new user? Please <strong>Register</strong></Link>
                         </form>

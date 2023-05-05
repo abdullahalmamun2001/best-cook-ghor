@@ -4,11 +4,11 @@ import { Navigate } from 'react-router-dom';
 
 const PrivateRouter = ({children}) => {
     const {user,loader}=useContext(AuthContext)
-    if(loader){
-        return <h1>Loading</h1>
-    }
     if(user){
         return children;
+    }
+    if(loader){
+        return <h1>Loading</h1>
     }
     
     return <Navigate to='/login' replace={true}></Navigate>

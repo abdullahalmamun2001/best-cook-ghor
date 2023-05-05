@@ -10,7 +10,7 @@ const Chef = ({ chef }) => {
     // console.log(chefsData);
     // console.log(paramsData)
     // console.log(props);
-    const { id, picture, name, experience, likes, recipes,bio } = chef;
+    const { id, picture, name, experience, likes, recipes } = chef;
     console.log(chef);
     // const { recipes} = props.chef.recipes;
     // console.log(picture);
@@ -32,7 +32,6 @@ const Chef = ({ chef }) => {
                     <p>Experience :{experience}</p>
                     <p>Likes :{likes}</p>
                 </div>
-                    <p className='text-left'>Bio Of Chef :{bio? bio:"missing bio"}</p>
                 <p>Recipes :{recipes.length}</p>
                 <div className="card-actions">
                     <Link to={`/chefs/${id}`} className="btn btn-primary" >View Recipes</Link>

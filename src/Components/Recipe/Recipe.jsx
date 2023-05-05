@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Recipe = ({ recipe }) => {
-    console.log(recipe);
     const { id, picture, name, rating, making_details } = recipe;
-    const notify = () => toast("Wow so easy!");
+
+    const [isClicked, setIsClicked] = useState(false);
+    console.log(recipe);
+
+    const notify = () => {
+        setIsClicked(true);
+        toast.success("This Is Add To Your Favorite Cart")
+    };
     // console.log(picture);
     return (
         <div className='flex m-4'>
@@ -15,7 +22,7 @@ const Recipe = ({ recipe }) => {
             </div>
             <div className='m-10 border border-spacing-1 p-5 border-red-400 text-2xl my-auto w-10/12'>
                 <p>Cooking Policy :{making_details}</p>
-                <button className='btn btn-secondary' onClick={notify}>Favorite</button>
+                <button className='btn btn-secondary' disabled={isClicked} onClick={notify}>{isClicked ? 'Button clicked' : 'Click me'}</button>
                 <ToastContainer />
             </div>
         </div>

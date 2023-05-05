@@ -45,7 +45,12 @@ const AuthPRovider = ({children}) => {
         return signOut(auth)
     }
     
-    const authInfo={user,loader,createUser,googleRegister,signIn,githubSignIn,logOut}
+    const updateUserData=(user,name)=>{
+        updateProfile(user,{
+            displayName:name
+        })
+    }
+    const authInfo={user,loader,updateUserData,createUser,googleRegister,signIn,githubSignIn,logOut}
     return (
         <div>
             <AuthContext.Provider value={authInfo}>

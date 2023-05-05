@@ -1,11 +1,20 @@
 import React from 'react';
-import banner from "./../../../assets/banner.jpg"
+import banner from "./../../../assets/vavver.webp"
 
 const Banner = () => {
     return (
-        <div className='w-75 img-fluid'>
-            <img className='w-10/12 mx-auto rounded my-10' src={banner} alt="" />
-        </div>
+       <div>
+         <div className='h-100 bg-no-repeat w-full' style={{ backgroundImage: `url(${banner})` }}>
+      Hello World
+    </div>
+        {/* <div style={{ 
+        backgroundImage: `url("file:///C:/React/assaignment-ten/assets/vavver.webp")` 
+      }}></div> */}
+      {/* <div style={{ 
+        backgroundImage:{banner} 
+      }}></div> */}
+       </div>
+        
     );
 };
 

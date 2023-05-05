@@ -3,18 +3,16 @@ import Chef from '../Chef/Chef';
 import { useLoaderData, useParams } from 'react-router-dom';
 
 const Chefs = () => {
-    const paramsData=useParams();
-    const loaderData=useLoaderData();
-    // console.log(paramsData);
-    // console.log(loaderData);
+    const [loader,setLoader]=useState(true)
     const [chefs,setChefs]=useState([]);
-    // console.log(chefs);
+    
 
 
     useEffect(()=>{
         fetch('https://shape-server-abdullahalmamun2001.vercel.app/chefs')
         .then(res=>res.json())
         .then(data=>setChefs(data))
+        // setLoader(false)
         .catch(error=>console.log(error))
     },[])
     return (

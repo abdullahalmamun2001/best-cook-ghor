@@ -6,38 +6,39 @@ import { AuthContext } from '../Provider/AuthPRovider';
 
 const Register = () => {
     const [error,setError]=useState('');
-    const { createUser} = useContext(AuthContext)
+    const { createUser,updateUserData} = useContext(AuthContext)
+
     const handleRegisterForm = (event) => {
         event.preventDefault()
         const form = event.target;
         const email = form.email.value
-        // const confirm = form.confirm.value
         const name = form.name.value
         const password = form.password.value;
-        form.reset();
         
+
         if(password.length<6){
             return setError('Please Strong Password')
         }
-        console.log(email, password, confirm);
+        console.log(email, password);
 
         createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                updateUseData(result.user,name)
+                updateUserData(result.user,name)
             })
+            
             .catch(error => {
                 setError(error);
             })
     }
-    const updateUseData=(user,name)=>{
-        updateProfile(user,{
-            displayName:name
-        })
-        .then(console.log('user data us update'))
-        .catch(error=>console.log(error.massage))
-    }
+    // const updateUseData=(user,name)=>{
+    //     updateProfile(user,{
+    //         displayName:name
+    //     })
+    //     .then(console.log('user data us update'))
+    //     .catch(error=>console.log(error.massage))
+    // }
     
     return (
         <div>
@@ -74,10 +75,10 @@ const Register = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type="password" name='password' placeholder="Enter Your Password" className="input input-bordered" />
-                                <label className="label">
+                                {/* <label className="label">
                                     <span className="label-text">Confirm</span>
                                 </label>
-                                <input type="password" name='confirm' placeholder="Enter Confirm Password" className="input input-bordered" />
+                                <input type="password" name='confirm' placeholder="Enter Confirm Password" className="input input-bordered" /> */}
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
