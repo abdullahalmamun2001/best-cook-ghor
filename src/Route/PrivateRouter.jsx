@@ -5,6 +5,7 @@ import { Navigate,useLocation } from 'react-router-dom';
 const PrivateRouter = ({children}) => {
     const {user,loader}=useContext(AuthContext)
     const location=useLocation();
+    const form=location.state?.from?.pathname || '/';
     if(user){
         return children;
     }

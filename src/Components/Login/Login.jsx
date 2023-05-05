@@ -8,7 +8,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-    console.log(location?.state);
+    // console.log(location?.state);
     const navigate = useNavigate()
 
 
@@ -19,14 +19,14 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value
         const password = form.password.value;
-        console.log(email, password);
+        // console.log(email, password);
 
 
         
         if (password.length < 6) {
             return setError("Please give strong password")
         }
-        setError('')
+        
         signIn(email, password)
             .then(result => {
                 const loggedUser = result.user;
@@ -35,23 +35,23 @@ const Login = () => {
                     return toast.success('LogIn successFully')
                 }
                 setError('')
-                navigate(from, { replace: true })
+                navigate('/login', { replace: true })
                 form.reset();
             })
             .catch(error => {
-                setError(error.message)
+                // setError(error.message)
             })
     }
-    // setError('')
+   
     const handleGooglePopup = () => {
         googleRegister()
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                setError('')
+                
             })
             .catch(error => {
-                setError(error.message)
+                // setError(error.message)
 
             })
         }
@@ -61,12 +61,14 @@ const Login = () => {
             .then(result => {
                 const logInUser = result.user;
                 console.log(logInUser);
-                setError('')
+                
             })
-            .catch(error => setError(error.message))
+            .catch(error => {
+                setError(error.message)
+            })
         }
         
-
+        
         // toast.error(error)
         toast(`${error}`,{
             position: "top-center",
