@@ -7,8 +7,8 @@ import { AuthContext } from '../Provider/AuthPRovider';
 const Login = () => {
     const [error, setError] = useState('');
     const location = useLocation();
-    console.log(location);
     const from = location.state?.from?.pathname || '/';
+    console.log(location?.state);
     const navigate = useNavigate()
 
 
@@ -22,50 +22,67 @@ const Login = () => {
         console.log(email, password);
 
 
-        setError('')
+        
         if (password.length < 6) {
             return setError("Please give strong password")
         }
-
+        setError('')
         signIn(email, password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                
-                form.reset();
+                if(loggedUser){
+                    return toast.success('LogIn successFully')
+                }
+                setError('')
                 navigate(from, { replace: true })
+                form.reset();
             })
             .catch(error => {
                 setError(error.message)
-                toast.success(error)
             })
     }
+    // setError('')
     const handleGooglePopup = () => {
         googleRegister()
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                setError('')
             })
             .catch(error => {
                 setError(error.message)
-                toast.success(error.message)
-            })
-    }
 
-    const handleGithubSignIn = () => {
-        githubSignIn()
+            })
+        }
+        
+        const handleGithubSignIn = () => {
+            githubSignIn()
             .then(result => {
                 const logInUser = result.user;
                 console.log(logInUser);
+                setError('')
             })
-            .catch(error => console.log(error.message))
-    }
-    const notify=()=>{toast.success('LogIn Successful')}
+            .catch(error => setError(error.message))
+        }
+        
 
-
+        // toast.error(error)
+        toast(`${error}`,{
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            type:"error",
+            theme: "dark",
+            })
     return (
         <div>
             <ToastContainer></ToastContainer>
+            
             <div className="hero min-h-screen bg-base-200">
                 <h1>Please Login</h1>
                 <div className="hero-content ">
@@ -91,9 +108,8 @@ const Login = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary" onClick={notify}>Login</button>
-                                toast.success('Login Success')
-                                <ToastContainer></ToastContainer>
+                                <button className="btn btn-primary">Login</button>
+                                
                             </div>
                             <Link to='/register'>Are you new user? Please <strong>Register</strong></Link>
                         </form>

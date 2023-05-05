@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ErrorPage = () => {
     return (
@@ -13,7 +14,10 @@ const ErrorPage = () => {
             <p className="text-center my-5 text-red-500 text-2xl">
                 Sorry, you enter a invalid path, please enter valid path
             </p>
-           
+            <div className='text-center p-10'>
+                <Link className='btn btn-secondary' to='/'>GO To Home Page</Link>
+            </div>
+
         </div>
 
     );

@@ -1,12 +1,15 @@
 import React from 'react';
 import { StarIcon,HeartIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Rev = ({ rev }) => {
     const { name, image, rating } = rev;
     return (
         <div className='w-9/12 mx-auto'>
-            <img className='h-52 w-96' src={image} alt="" />
+            {/* <img className='h-52 w-96' src={image} alt="" /> */}
+            <LazyLoadImage className='h-52 w-96' src={image} effect='blur'></LazyLoadImage>
             <h1 className='text-center'>{name}</h1>
             <div className="flex justify-between">
                 <p>Rating :{rating}</p>

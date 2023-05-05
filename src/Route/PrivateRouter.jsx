@@ -9,7 +9,7 @@ const PrivateRouter = ({children}) => {
         return children;
     }
     if(loader){
-        return <h1>Loading</h1>
+        return <progress className="progress progress-warning w-56" value="40" max="100"></progress>
     }
     
     return <Navigate to='/login' state={{from:location}} replace={true}></Navigate>
