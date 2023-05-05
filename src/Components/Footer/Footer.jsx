@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <div className='bg-black text-bg-white p-10'>
             <h1 className='text-danger text-center'>Copyright @2009</h1>
-            <div className='md:flex justify-between m-10'>
+            <div className='flex justify-between m-10'>
                 <div>
                     <p>11/3,Mamun vila,</p>
                     <p>KoiKhali</p>
