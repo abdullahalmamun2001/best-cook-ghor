@@ -12,7 +12,7 @@ const Chefs = () => {
         fetch('https://shape-server-abdullahalmamun2001.vercel.app/chefs')
         .then(res=>res.json())
         .then(data=>setChefs(data))
-        // setLoader(false)
+        
         .catch(error=>console.log(error))
     },[])
     return (

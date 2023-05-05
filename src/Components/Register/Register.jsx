@@ -6,7 +6,7 @@ import { AuthContext } from '../Provider/AuthPRovider';
 
 const Register = () => {
     // const [error,setError]=useState('');
-    const { createUser,updateUserData} = useContext(AuthContext)
+    const { createUser,updateUserData,loader} = useContext(AuthContext)
 
     const handleRegisterForm = (event) => {
         event.preventDefault()
@@ -20,9 +20,10 @@ const Register = () => {
         // if(password.length<6){
         //     return setError('Please Strong Password')
         // }
-        console.log(url);
+        // console.log(url);
 
         createUser(email, password)
+        
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);

@@ -15,6 +15,7 @@ import Login from './Components/Login/Login.jsx';
 import AuthPRovider from './Components/Provider/AuthPRovider.jsx';
 import PrivateRouter from './Route/PrivateRouter.jsx';
 import ErrorPage from './Components/ErrorPage/ErrorPage.jsx';
+import Review from './Components/Review/Review.jsx';
 
 const router =createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router =createBrowserRouter([
       {
         path:'/login',
         element:<Login></Login>
+      },
+      {
+        path:'/review',
+        element:<PrivateRouter><Review></Review></PrivateRouter>
       }
     ]
   }
