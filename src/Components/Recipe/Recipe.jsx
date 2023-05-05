@@ -22,7 +22,7 @@ const Recipe = ({ recipe }) => {
             </div>
             <div className='m-10 border border-spacing-1 p-5 border-red-400 text-2xl my-auto w-10/12'>
                 <p>Cooking Policy :{making_details}</p>
-                <button className='btn btn-secondary' disabled={isClicked} onClick={notify}>{isClicked ? 'Button clicked' : 'Click me'}</button>
+                <button className='btn btn-secondary' disabled={isClicked} onClick={notify}>{isClicked ? 'Disable' : 'Favorite'}</button>
                 <ToastContainer />
             </div>
         </div>

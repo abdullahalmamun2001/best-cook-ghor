@@ -5,7 +5,7 @@ import { AuthContext } from '../Provider/AuthPRovider';
 
 
 const Register = () => {
-    const [error,setError]=useState('');
+    // const [error,setError]=useState('');
     const { createUser,updateUserData} = useContext(AuthContext)
 
     const handleRegisterForm = (event) => {
@@ -13,23 +13,25 @@ const Register = () => {
         const form = event.target;
         const email = form.email.value
         const name = form.name.value
+        const url = form.url.value
         const password = form.password.value;
         
 
-        if(password.length<6){
-            return setError('Please Strong Password')
-        }
-        console.log(email, password);
+        // if(password.length<6){
+        //     return setError('Please Strong Password')
+        // }
+        console.log(url);
 
         createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                updateUserData(result.user,name)
+                form.reset();
+                updateUserData(result.user,name,url)
             })
             
             .catch(error => {
-                setError(error);
+                (error.massage);
             })
     }
     // const updateUseData=(user,name)=>{
@@ -42,7 +44,7 @@ const Register = () => {
     
     return (
         <div>
-            <p>{error}</p>
+            {/* <p>{error}</p> */}
             <div className="hero min-h-screen bg-base-200">
                 <h1>Register</h1>
                 <div className="hero-content ">
@@ -64,12 +66,12 @@ const Register = () => {
                                 </label>
                                 <input type="text" name='name' placeholder="Enter Your User Name" className="input input-bordered" required />
                             </div>
-                            {/* <div className="form-control">
+                            <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Email</span>
+                                    <span className="label-text">URL</span>
                                 </label>
                                 <input type="url" name='url' placeholder="Enter Your URL Email" className="input input-bordered" required />
-                            </div> */}
+                            </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>

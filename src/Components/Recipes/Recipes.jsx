@@ -1,15 +1,17 @@
 import React from 'react';
-import {useLoaderData, useParams,} from "react-router-dom";
+import {useLoaderData} from "react-router-dom";
 import Recipe from '../Recipe/Recipe';
 
 const Recipes = () => {
 
     const data=useLoaderData();
-    if(!data){
-        return <h1>Loading</h1>
-    }
-    // console.log(data);
     const {recipes}=data;
+    console.log(data);
+    if(!data){
+        return <h1></h1>
+    }
+    
+    
     
     return (
         <div>

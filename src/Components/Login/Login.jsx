@@ -5,9 +5,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthPRovider';
 
 const Login = () => {
-    const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
     const [error, setError] = useState('');
+    const location = useLocation();
+    console.log(location);
+    const from = location.state?.from?.pathname || '/';
     const navigate = useNavigate()
 
 
@@ -34,7 +35,10 @@ const Login = () => {
                 form.reset();
                 navigate(from, { replace: true })
             })
-            .catch(error => console.log(error.message))
+            .catch(error => {
+                setError(error.message)
+                toast.success(error)
+            })
     }
     const handleGooglePopup = () => {
         googleRegister()
@@ -43,7 +47,8 @@ const Login = () => {
                 console.log(loggedUser);
             })
             .catch(error => {
-                console.log(error.message);
+                setError(error.message)
+                toast.success(error.message)
             })
     }
 
@@ -55,12 +60,12 @@ const Login = () => {
             })
             .catch(error => console.log(error.message))
     }
-    const notify=()=>{toast.success('LogOut Successful')}
+    const notify=()=>{toast.success('LogIn Successful')}
 
 
     return (
         <div>
-            <p>{error}</p>
+            <ToastContainer></ToastContainer>
             <div className="hero min-h-screen bg-base-200">
                 <h1>Please Login</h1>
                 <div className="hero-content ">

@@ -45,9 +45,10 @@ const AuthPRovider = ({children}) => {
         return signOut(auth)
     }
     
-    const updateUserData=(user,name)=>{
+    const updateUserData=(user,name,url)=>{
         updateProfile(user,{
-            displayName:name
+            displayName:name,
+            photoURL:url
         })
     }
     const authInfo={user,loader,updateUserData,createUser,googleRegister,signIn,githubSignIn,logOut}

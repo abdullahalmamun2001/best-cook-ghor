@@ -5,18 +5,10 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const Chef = ({ chef }) => {
     const notify = () => toast("Wow so easy!");  
-    // const chefsData = useLoaderData();
-    // const paramsData = useParams();
-    // console.log(chefsData);
-    // console.log(paramsData)
-    // console.log(props);
+   
     const { id, picture, name, experience, likes, recipes } = chef;
-    console.log(chef);
-    // const { recipes} = props.chef.recipes;
-    // console.log(picture);
-    // console.log();
+    
     const handleRecipes = (id) => {
-        // console.log(id);
     }
 
     return (
